@@ -1,9 +1,0 @@
-Simple ideas:
-
-Password Manager
-
-Web crawler
-
-Pharmacist game
-
-POS web APP
