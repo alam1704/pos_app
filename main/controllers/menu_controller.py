@@ -36,7 +36,7 @@ def item_retrieve(id):
 @menu_items.route('/menu_items/', methods=['POST'])
 def item_create():
     # Will create a specific new item on the menu
-    new_item= item_schema.load(request.json) #how do i add multiple fields to add to the menu item
+    new_item=item_schema.load(request.json) #how do i add multiple fields to add to the menu item
     db.session.add(new_item)
     db.session.commit()
     return jsonify(item_schema.dump(new_item))

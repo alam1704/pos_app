@@ -16,6 +16,19 @@ def drop_db():
     db.drop_all()
     print("Tables deleted")
 
+@db_commands.cli.command("seed")
+def seed_db():
+    from models.menu_items import Menu
+    from faker import Faker
+    faker=Faker()
+
+    for i in range(5):
+        menu_item=Menu(faker.name(), float(faker.random_number()), faker.catch_phrase())
+        db.session.add(menu_item)
+
+    db.session.commit()
+    print("Tables seeded")
+
 @db_commands.cli.command("export")
 def export_db():
     "Exports all data from the database into a text document"
