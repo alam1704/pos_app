@@ -20,6 +20,9 @@ def create_app():
     #similar to initialising the db above, we are initialising the marshmallow for serialization
     ma.init_app(app)
 
+    from commands import db_commands
+    app.register_blueprint(db_commands)
+
     # then register routes just before executing app
     from controllers import registerable_controllers
     for controller in registerable_controllers:
