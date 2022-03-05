@@ -17,25 +17,37 @@ import os
     ]
 )
 
+# creating a flask app object
 app = Flask(__name__)
 
+#defining the location of database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql+psycopg2://{db_user}:{db_pass}@{db_domain}/{db_name}"
+
+#to avoid flask from displaying warnings
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
+#creating database object for our Object relational mapper
 db = SQLAlchemy(app)
 
+
+#setup table in database and retrieve info from that table
 class Menu(db.Model):
+    #name of table
     __tablename__ = "menu_items"
+
+    #attributes specify what columns the table should have
     item_id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(80), unique=True, nullable=False)
     item_cost = db.Column(db.Float, nullable=False)
     item_description = db.Column(db.String(200), nullable=True)
 
+    #creates python object that will allows new row creation
     def __init__(self, item_name, item_cost, item_description):
         self.item_name=item_name
         self.item_cost=item_cost
         self.item_description=item_description
 
+    #To convert to JSON 
     @property 
     def serialize(self):
         return {
@@ -45,6 +57,7 @@ class Menu(db.Model):
             "item_description":self.item_description
         }
 
+#creates database tables when app starts
 db.create_all()
 
     # @property
