@@ -28,12 +28,34 @@ class Menu(db.Model):
     __tablename__ = "menu_items"
     item_id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(80), unique=True, nullable=False)
-    item_cost = db.Column(db.float)
+    item_cost = db.Column(db.Float, nullable=False)
+    item_description = db.Column(db.String(200), nullable=True)
+
+    def __init__(self, item_name, item_cost, item_description):
+        self.item_name=item_name
+        self.item_cost=item_cost
+        self.item_description=item_description
+
+    @property 
+    def serialize(self):
+        return {
+            "item_id":self.item_id,
+            "item_name":self.item_name,
+            "item_cost":self.item_cost,
+            "item_description":self.item_description
+        }
+
+db.create_all()
+
+    # @property
+    # def item_image(self):
+    #     return f"An image from {self.item_id}"
 
 @app.route('/menu_items/', methods=['GET'])
 def menu_retrieve():
     #Will retrieve an entire menu/the home page
-    return "Retrieve menu"
+    menu_items=Menu.query.all()
+    return jsonify([menu_item.serialize for menu_item in menu_items])
 
 @app.route('/menu_calculator/')
 def calculator_index():
@@ -51,24 +73,34 @@ def addToCart():
     return "Will return item into cart"
 
 @app.route('/menu_items/<int:id>/', methods=['GET'])
-def item_retrieve():
+def item_retrieve(id):
     # Will retrieve a specific item on the menu
-    return f'Retrieve {id} Item'
+    menu_item=Menu.query.get_or_404(id)
+    return jsonify(menu_item.serialize)
 
 @app.route('/menu_items/<int:id>/', methods=['POST'])
 def item_create():
     # Will create a specific new item on the menu
-    return f"Create {id} item"
+    new_item= Menu(request.json['item_name']) #how do i add multiple fields to add to the menu item
+    db.session.add(new_item)
+    db.session.commit()
+    return jsonify(new_item.serialize)
 
 @app.route('/menu_items/<int:id>/', methods=['PUT', 'PATCH'])
-def item_update():
+def item_update(id):
     # Will update specific item on the menu
-    return f"Update {id} item"
+    menu_item=Menu.query.filter_by(item_id=id)
+    menu_item.update(dict(item_name=request.json["item_name"])) # how to update multiple fields of an item
+    db.session.commit()
+    return jsonify(menu_item.first().serialize)
 
 @app.route('/menu_items/<int:id>/', methods=['DELETE'])
-def item_delete():
+def item_delete(id):
     # Will delete specific item on menu
-    return f"Delete {id} Item"
+    menu_item=Menu.query.get_or_404(id)
+    db.session.delete(menu_item)
+    db.session.commit()
+    return jsonify(menu_item.serialize)
 
 
 if __name__ == '__main__':
