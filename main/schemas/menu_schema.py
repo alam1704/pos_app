@@ -10,8 +10,8 @@ class MenuSchema(ma.SQLAlchemyAutoSchema):
     
     item_id = auto_field(dump_only=True)
     item_name = auto_field(required=True, validate=validate.Length(min=1))
-    item_cost = auto_field(required=True)
-    item_description = auto_field()
+    item_cost = auto_field(required=True, validate=validate.Range(0,100))
+    item_description = auto_field(required=True, validate=validate.Length(max=1000))
 
 
 

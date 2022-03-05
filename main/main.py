@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from marshmallow.exceptions import ValidationError
 
 #create database object
 db=SQLAlchemy()
@@ -27,5 +28,9 @@ def create_app():
     from controllers import registerable_controllers
     for controller in registerable_controllers:
         app.register_blueprint(controller)
+
+    @app.errorhandler(ValidationError)
+    def handle_bad_request(error):
+        return (jsonify(error.messages), 400)
 
     return app
