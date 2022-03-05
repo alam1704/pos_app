@@ -23,7 +23,10 @@ def seed_db():
     faker=Faker()
 
     for i in range(5):
-        menu_item=Menu(faker.name(), float(faker.random_number()), faker.catch_phrase())
+        menu_item=Menu(
+            item_name=faker.name(), 
+            item_cost=float(faker.random_number()), 
+            item_description=faker.catch_phrase())
         db.session.add(menu_item)
 
     db.session.commit()

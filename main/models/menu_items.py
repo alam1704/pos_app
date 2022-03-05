@@ -12,10 +12,10 @@ class Menu(db.Model):
     item_description = db.Column(db.String(200), nullable=True)
 
     #creates python object that will allows new row creation
-    def __init__(self, item_name, item_cost, item_description):
-        self.item_name=item_name
-        self.item_cost=item_cost
-        self.item_description=item_description
+    # def __init__(self, item_name, item_cost, item_description):
+    #     self.item_name=item_name
+    #     self.item_cost=item_cost
+    #     self.item_description=item_description
 
     # @property
     # def item_image(self):
