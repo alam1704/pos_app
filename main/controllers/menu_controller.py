@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 from main import db
 from models.menu_items import Menu
 from schemas.menu_schema import item_schema, items_schema
@@ -10,12 +10,19 @@ menu_items = Blueprint('menu_items', __name__)
 def menu_retrieve():
     #Will retrieve an entire menu/the home page
     menu_items=Menu.query.all()
-    return jsonify(items_schema.dump(menu_items))
+    data = {
+        "page_title": "Menu",
+        "menu_items": items_schema.dump(menu_items)
+    }
+    return render_template("menu.html", page_data=data)
 
-@menu_items.route('/menu_calculator/')
+@menu_items.route('/')
 def calculator_index():
     # Will return a calculator index page
-    return "renders a calculator"
+    data={
+        "page_title":"Manual Entry"
+    }
+    return render_template("calculator.html", page_data=data)
 
 @menu_items.route('/cart/', methods=['GET'])
 def cart():
@@ -33,10 +40,17 @@ def item_retrieve(id):
     menu_item=Menu.query.get_or_404(id)
     return jsonify(item_schema.dump(menu_item))
 
-@menu_items.route('/menu_items/', methods=['POST'])
+@menu_items.route('/new_item/', methods=['GET'])
+def new_item_index():
+    data={
+        "page_title":"Add New Item"
+    }
+    return render_template("new_item.html", page_data=data)
+
+@menu_items.route('/new_item/', methods=['POST'])
 def item_create():
     # Will create a specific new item on the menu
-    new_item=item_schema.load(request.json) #how do i add multiple fields to add to the menu item
+    new_item=item_schema.load(request.form) #how do i add multiple fields to add to the menu item
     db.session.add(new_item)
     db.session.commit()
     return jsonify(item_schema.dump(new_item))
