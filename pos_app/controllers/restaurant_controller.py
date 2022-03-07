@@ -25,7 +25,7 @@ def retrieve_restaurants():
     } 
     return render_template("restaurant_index.html", page_data=data)
 
-@restaurant.route("/restaurant/", methods=['GET', 'POST'])
+@restaurant.route("/restaurant/signup/", methods=['GET', 'POST'])
 def sign_up():
     data = {
         "page_title":"Restaurant Sign Up"
@@ -38,3 +38,43 @@ def sign_up():
     db.session.commit()
     login_user(new_restaurant)
     return redirect(url_for("restaurant.retrieve_restaurants"))
+
+@restaurant.route("/restaurant/login/", methods=['GET', 'POST'])
+def log_in():
+    data = {
+        "page_title":"Restaurant Log In"
+    }
+    if request.method == "GET":
+        return render_template("restaurant_login.html", page_data=data)
+    
+    restaurant = Restaurant.query.filter_by(restaurant_email=request.form["restaurant_email"]).first()
+    if restaurant and restaurant.check_password(password=request.form["restaurant_password"]):
+        login_user(restaurant)
+        return redirect(url_for("restaurant.retrieve_restaurants"))
+
+    abort(401, "Login Unsuccessful. Did you supply the correct username and password?")
+
+#see if we can add URL_mapping for current user i.e. /<username>/account/
+@restaurant.route("/restaurant/account/", methods=['GET','POST'])
+@login_required
+def restaurant_detail():
+    if request.method=="GET":
+        data = {"page_title":"Account details"}
+        return render_template("restaurant_detail.html", page_data=data)
+
+    restaurant=Restaurant.query.filter_by(restaurant_id=current_user.restaurant_id)
+    updated_fields=restaurant_schema.dump(request.form)
+    errors = restaurant_update_schema.validate(updated_fields)
+
+    if errors:
+        raise ValidationError(message=errors)
+
+    restaurant.update(updated_fields)
+    db.session.commit()
+    return redirect(url_for("restaurant.retrieve_restaurants"))
+
+@restaurant.route("/restaurant/logout/", methods=["POST"])
+@login_required
+def log_out():
+    logout_user()
+    return redirect(url_for("restaurant.log_in"))

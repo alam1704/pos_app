@@ -11,7 +11,7 @@ class Restaurant(UserMixin, db.Model):
     restaurant_password = db.Column(db.String(200), nullable=False)
 
     def get_id(self):
-        return self.resturant_id
+        return self.restaurant_id
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        return check_password_hash(self.restaurant_password, password)
