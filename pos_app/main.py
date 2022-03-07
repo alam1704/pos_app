@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow.exceptions import ValidationError
+from flask_login import LoginManager
 
 #create database object
 db=SQLAlchemy()
 #create the marshmallow object for serialization
 ma=Marshmallow()
+# create a login manager object to start without starting app
+lm=LoginManager()
 
 def create_app():
 
@@ -20,6 +23,8 @@ def create_app():
     db.init_app(app)
     #similar to initialising the db above, we are initialising the marshmallow for serialization
     ma.init_app(app)
+    #similar to above
+    lm.init_app(app)
 
     from commands import db_commands
     app.register_blueprint(db_commands)

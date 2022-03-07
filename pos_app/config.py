@@ -4,6 +4,8 @@ class Config(object):
     #to avoid flask from displaying warnings
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
     @property
     def SQLALCHEMY_DATABASE_URI(self):
         # using multiple assignments and list comprehension to import variables

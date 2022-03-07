@@ -14,7 +14,7 @@ def menu_retrieve():
         "page_title": "Menu",
         "menu_items": items_schema.dump(menu_items)
     }
-    return render_template("menu.html", page_data=data)
+    return render_template("item_menu.html", page_data=data)
 
 @menu_items.route('/')
 def calculator_index():
@@ -45,7 +45,7 @@ def new_item_index():
     data={
         "page_title":"Add New Item"
     }
-    return render_template("new_item.html", page_data=data)
+    return render_template("item_new.html", page_data=data)
 
 @menu_items.route('/new_item/', methods=['POST'])
 def item_create():
