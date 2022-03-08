@@ -6,8 +6,8 @@
             <button ref>Add New Menu Item</button>
         </a>
     <div>
-    {% for menu_item in page_data.menu_items %}
-        <a href="//{{ menu_item.item_id }}/">{{ menu_item.item_name }}</a><br/>
+    {% for dish in page_data.dishes %}
+        <a href="/dishes/{{ dish.dish_id }}/">{{ dish.dish_name }}</a><br/>
     {% endfor %}
     <hr/>
     </div>

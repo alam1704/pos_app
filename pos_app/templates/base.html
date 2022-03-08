@@ -16,14 +16,14 @@
             <nav>
                 {% if current_user.is_authenticated %}
                     <a href="/">Manual Entry</a>
-                    <a href="/menu_items/">Menu</a>
-                    <a href="/restaurant/account/">Account</a>
-                    <form action="/restaurant/logout/" method="POST">
+                    <a href="/dishes/">Menu</a>
+                    <a href="/account/">Account</a>
+                    <form action="/logout/" method="POST">
                     <button>Log Out</button>
                     </form>
                 {% else %}
-                    <a href="/restaurant/login/">Log In</a>
-                    <a href="/restaurant/signup/">Sign Up</a>
+                    <a href="/login/">Log In</a>
+                    <a href="/signup/">Sign Up</a>
                 {% endif %}
             </nav>
         </header>

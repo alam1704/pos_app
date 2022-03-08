@@ -19,7 +19,7 @@ def drop_db():
 
 @db_commands.cli.command("seed")
 def seed_db():
-    from models.menu_items import Menu
+    from pos_app.models.dish import Menu
     from faker import Faker
     faker=Faker()
 
@@ -52,7 +52,7 @@ def reset_db():
     print("Tables deleted!")
     db.create_all()
     print("Tables created!")
-    from models.menu_items import Menu
+    from pos_app.models.dish import Menu
     from faker import Faker
     faker = Faker()
 

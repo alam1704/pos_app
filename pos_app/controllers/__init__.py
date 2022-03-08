@@ -1,4 +1,4 @@
-from controllers.menu_controller import menu_items
+from controllers.dish_controller import dishes
 from controllers.restaurant_controller import restaurant
 
-registerable_controllers = [menu_items, restaurant]
+registerable_controllers = [dishes, restaurant]
