@@ -2,10 +2,12 @@
 {% block content %}
     <div>
         <form action="/menu_items/" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" name="name" value = {{ current_user.name }}>
-            <label for="email">Email:</label>
-            <input type="text" name="email" value = {{ current_user.email }}>
+            <label for="item_name">Name:</label>
+            <input type="text" name="item_name" value = {{ current_user.item_name }}>
+            <label for="item_cost">Cost:</label>
+            <input type="text" name="item_cost" value = {{ current_user.item_cost }}>
+            <label for="item_description">Description:</label>
+            <input type="text" name="item_description" value = {{ current_user.item_description }}>
             <button>Update</button>
         </form>
     </div>

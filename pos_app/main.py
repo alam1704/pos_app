@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 from marshmallow.exceptions import ValidationError
 from flask_login import LoginManager
 
@@ -10,6 +11,8 @@ db=SQLAlchemy()
 ma=Marshmallow()
 # create a login manager object to start without starting app
 lm=LoginManager()
+
+mi=Migrate()
 
 def create_app():
 
@@ -25,6 +28,8 @@ def create_app():
     ma.init_app(app)
     #similar to above
     lm.init_app(app)
+
+    mi.init_app(app, db)
 
     from commands import db_commands
     app.register_blueprint(db_commands)
