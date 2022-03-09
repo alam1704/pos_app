@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request, render_template, redirect, url_for
 from main import db
 from models.dish import Dish
+from models.dish import Order
 from schemas.dish_schema import dish_schema, dishes_schema
+from schemas.order_schema import order_schema, orders_schema
 from flask_login import login_user, logout_user, login_required, current_user
 
 # create dishes controller
@@ -22,10 +24,11 @@ def cart():
     #will return page/side-page of cart
     return "renders page for cart"
 
-@dishes.route('/addToCart/', methods=['PUT', 'PATCH'])
+@dishes.route('/addToCart/<int:id>')
 @login_required
-def add_dish_to_cart():
+def add_dish_to_cart(id):
     # will prompt user to enter qty then add qty and item to cart
+
     return "Will return item into cart"
 
 @dishes.route('/dishes/', methods=['GET'])
