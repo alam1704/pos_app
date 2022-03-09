@@ -1,14 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
     <hr/>
-    <h2>Menu List</h2>
+    
         <a href="/new_item/"> 
             <button ref>Add New Menu Item</button>
         </a>
-    <div>
-    {% for dish in page_data.dishes %}
-        <a href="/dishes/{{ dish.dish_id }}/">{{ dish.dish_name }}</a><br/>
-    {% endfor %}
+    
+    <h2>Menu List</h2>
+    <table class="table table-striped table-boredered">
+        <thead>
+            <tr>
+                <th>Dish Name</th>
+                <th>Dish Description</th>
+                <th>Dish Cost</th>
+            </tr>
+        </thead>
+
+        {% for dish in page_data.dishes %}
+        <tbody>
+            <tr>
+                <td>
+                    <a href="/dishes/{{ dish.dish_id }}/">{{ dish.dish_name }}</a><br/>
+                </td>
+                <td>
+                    {{ dish.dish_description }}
+                </td>
+                <td>
+                    {{ dish.dish_cost }}
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
     <hr/>
-    </div>
+    
 {% endblock %}

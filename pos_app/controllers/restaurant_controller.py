@@ -25,7 +25,7 @@ def retrieve_restaurants():
     } 
     return render_template("restaurant_index.html", page_data=data)
 
-@restaurant.route("/signup/", methods=['GET', 'POST'])
+@restaurant.route("/", methods=['GET', 'POST'])
 def sign_up():
     data = {
         "page_title":"Restaurant Sign Up"

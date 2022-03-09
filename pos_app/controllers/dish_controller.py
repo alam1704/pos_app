@@ -65,7 +65,7 @@ def item_update(id):
     }
     return render_template("dish_detail.html", page_data=data)
 
-@dishes.route('/dishes/<int:id>/', methods=['DELETE'])
+@dishes.route('/dishes/<int:id>/delete/', methods=['POST'])
 @login_required
 def item_delete(id):
     # Will delete specific item on menu

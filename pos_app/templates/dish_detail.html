@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <h2> {{ page_data.dish.dish_name }} </h2>
+    <p> Dish ID: {{ page_data.dish.dish_id }}</p>
+    <p> Dish Cost: {{ page_data.dish.dish_cost }}</p>
+    <p> Dish Description: {{ page_data.dish.dish_description }}</p>
+    <br>
+    <hr/>
 
     <h3>Update Dish Info:</h3>
     <div>
@@ -15,5 +20,10 @@
         </form>
     </div>
 
+    <br><hr/>
+
+    <form action = "/dishes/{{ page_data.dish.dish_id }}/delete/", method="POST">
+        <button>Delete Dish</button>
+    </form>
 
 {% endblock %}
