@@ -10,7 +10,7 @@ class RestaurantSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     restaurant_id = auto_field(dump_only=True)
-    restaurant_name = auto_field(required=True, validate=validate.Length(min=1,max=10))
+    restaurant_name = auto_field(required=True, validate=validate.Length(min=1,max=25))
     restaurant_email = auto_field(required=True, validate=validate.Email())
     restaurant_password = fields.Method(
         required=True, 
