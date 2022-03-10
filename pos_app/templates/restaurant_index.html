@@ -1,6 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-    {% for iterable in page_data.restaurant %}
-        <li>{{ iterable.restaurant_name }}: {{ iterable.restaurant_email }}</li>
-    {% endfor %}
-{% endblock %}
