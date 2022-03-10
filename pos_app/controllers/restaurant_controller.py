@@ -42,7 +42,7 @@ def sign_up():
         return "Username or Email already exists, please go back and try again."
 
 
-@restaurant.route("/", methods=['GET', 'POST'])
+@restaurant.route("/login/", methods=['GET', 'POST'])
 def log_in():
     data = {
         "page_title":"Welcome!"

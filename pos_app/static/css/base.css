@@ -21,3 +21,15 @@
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
 
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
