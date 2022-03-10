@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-    <div>
-        <h2>Enter Restaurant Details</h2>
-        <div>
-            <form action="/signup/" method="POST">
-                <input type="text" name="restaurant_name" placeholder="Name...">
-                <input type="text" name="restaurant_email" placeholder="Email...">
-                <input type="text" name="restaurant_password" placeholder="Password...">
-                <button>Sign Up</button>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
+    </head>
+    <body class="text-center">
+        <h1 class="h1 mb-1 font-weight-normal">{{ page_data.page_title }}</h1>
+        <form class="form-signin" action="/signup/" method="POST">
+            <img class="mb-4" src="/static/logo.png" alt="" width="200" height="200">
+            <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+            <label for="inputName" class="sr-only">Restaurant Name</label>
+            <input class="form-control" type="name" name="restaurant_name" id="inputName" placeholder="Name...">
+            <label for="inputEmail" class="sr-only">Restaurant Email</label>
+            <input class="form-control" type="email" name="restaurant_email" id="inputEmail" placeholder="Email...">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input class="form-control" type="password" name="restaurant_password" id="inputPassword" placeholder="Password...">
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+            <a href="/">Log In</a>
             </form>
-        </div>
-    </div>
+        </form>
+    </body>
 {% endblock %}
