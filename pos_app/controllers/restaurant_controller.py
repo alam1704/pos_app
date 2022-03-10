@@ -39,7 +39,7 @@ def sign_up():
         login_user(new_restaurant)
         return redirect(url_for("restaurant.restaurant_detail"))
     except Exception as error:
-        return "Username or Email already exists, try again."
+        return "Username or Email already exists, please go back and try again."
 
 
 @restaurant.route("/", methods=['GET', 'POST'])
