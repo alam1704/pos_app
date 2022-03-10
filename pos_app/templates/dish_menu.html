@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <hr/>
-    
-        <a href="/new_item/"> 
-            <button ref>Add New Menu Item</button>
-        </a>
-    
+
     <h2>Menu List</h2>
     <table class="table table-striped table-boredered">
         <thead>
@@ -33,5 +28,7 @@
         {% endfor %}
     </table>
     <hr/>
-    
+    <a href="/new_item/"> 
+        <button ref>Add New Menu Item</button>
+    </a>
 {% endblock %}
