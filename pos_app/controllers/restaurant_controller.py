@@ -45,7 +45,7 @@ def sign_up():
 @restaurant.route("/", methods=['GET', 'POST'])
 def log_in():
     data = {
-        "page_title":"Restaurant Log In"
+        "page_title":"Welcome!"
     }
     if request.method == "GET":
         return render_template("restaurant_login.html", page_data=data)
