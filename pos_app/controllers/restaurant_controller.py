@@ -25,21 +25,24 @@ def retrieve_restaurants():
     } 
     return render_template("restaurant_index.html", page_data=data)
 
-@restaurant.route("/", methods=['GET', 'POST'])
+@restaurant.route("/signup/", methods=['GET', 'POST'])
 def sign_up():
     data = {
         "page_title":"Restaurant Sign Up"
     }
     if request.method == "GET":
         return render_template("restaurant_signup.html", page_data=data)
+    try:
+        new_restaurant = restaurant_schema.load(request.form)
+        db.session.add(new_restaurant)
+        db.session.commit()
+        login_user(new_restaurant)
+        return redirect(url_for("restaurant.restaurant_detail"))
+    except Exception as error:
+        return "Username or Email already exists, try again."
 
-    new_restaurant = restaurant_schema.load(request.form)
-    db.session.add(new_restaurant)
-    db.session.commit()
-    login_user(new_restaurant)
-    return redirect(url_for("restaurant.restaurant_detail"))
 
-@restaurant.route("/login/", methods=['GET', 'POST'])
+@restaurant.route("/", methods=['GET', 'POST'])
 def log_in():
     data = {
         "page_title":"Restaurant Log In"
