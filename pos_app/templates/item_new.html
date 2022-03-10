@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-    <hr/>
-    <div>
-        <h2>Enter New Menu Item Details</h2>
-        <div>
-            <form action="/new_item/" method="POST">
-                <input type="text" name="dish_name" placeholder="dish Name...">
-                <input type="text" name="dish_cost" placeholder="dish Cost...">
-                <input type="text" name="dish_description" placeholder="dish Description..."> 
-                <button>Create</button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-5 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <h2 class="fw-bold mb-0">Enter New Menu Item</h2>
+        </div>
+
+        <div class="modal-body p-5 pt-0">
+            <form class="" action="/new_item/" method="POST">
+            <div class="form-floating mb-3">
+                <input type="name" name="dish_name" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Dish name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="dish_cost" class="form-control rounded-4" id="floatingCost" placeholder="Cost">
+                <label for="floatingCost">Cost</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="dish_description" class="form-control rounded-4" id="floatingDescription" placeholder="Cost">
+                <label for="floatingDescription">Short Description</label>
+            </div>
+            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Create</button>
             </form>
         </div>
-    </div>    
-    <hr/>
+        </div>
+    </div>
 {% endblock %}
