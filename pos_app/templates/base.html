@@ -11,24 +11,63 @@
     </head>
     <body>
         {% if current_user.is_authenticated %}
-        <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                
-                <h5 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">{{ current_user.restaurant_name }}</h5>
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link" href="/calculator/">Manual Entry</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dishes/">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/account/">Account</a></li>
-                    <li class="nav-item">
-                        <form class="form-logout" action="/logout/" method="POST">
-                            <button class="btn btn-outline-primary" type="submit">Log Out</button>
-                        </form>
+        <header>
+            <div class="px-3 py-2 bg-dark text-white">
+              <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                  <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    {{ current_user.restaurant_name }}
+                  </a>
+        
+                  <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <li>
+                      <a href="#" class="nav-link text-secondary">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
+                        Home
+                      </a>
                     </li>
-                </nav>
-                
-                
-            </header>
-        </div>
+                    <li>
+                      <a href="#" class="nav-link text-white">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
+                        Orders
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/dishes/" class="nav-link text-white">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
+                        Menu
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/account/" class="nav-link text-white">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                        My Account
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-3 py-2 border-bottom mb-3">
+              <div class="container d-flex flex-wrap justify-content-center">
+                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+        
+                <div class="text-end">
+                    <form class="form-logout" action="/logout/" method="POST">
+                        <button class="btn btn-outline-primary" type="submit">Log Out</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </header>
         {% endif %}
        
 
@@ -42,5 +81,18 @@
             {% endblock %}
         </div>
         
+        <div class="container">
+            <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Orders</a></li>
+                <li class="nav-item"><a href="/dishes/" class="nav-link px-2 text-muted">Menu</a></li>
+                <li class="nav-item"><a href="/account/" class="nav-link px-2 text-muted">My Account</a></li>
+              </ul>
+              <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+            </footer>
+          </div>
+
     </body>
 </html>

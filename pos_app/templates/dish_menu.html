@@ -1,34 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <h2>Menu List</h2>
-    <table class="table table-striped table-boredered">
-        <thead>
-            <tr>
-                <th>Dish Name</th>
-                <th>Dish Description</th>
-                <th>Dish Cost</th>
-            </tr>
-        </thead>
-
-        {% for dish in page_data.dishes %}
-        <tbody>
-            <tr>
-                <td>
-                    <a href="/dishes/{{ dish.dish_id }}/">{{ dish.dish_name }}</a><br/>
-                </td>
-                <td>
-                    {{ dish.dish_description }}
-                </td>
-                <td>
-                    {{ dish.dish_cost }}
-                </td>
-            </tr>
-        </tbody>
-        {% endfor %}
-    </table>
-    <hr/>
-    <a href="/new_item/"> 
-        <button ref>Add New Menu Item</button>
-    </a>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="d-flex flex-column flex-sm-row">
+                <a href="/new_item/">
+                    <button type="button" class="btn btn-secondary">Add New Menu Item</button>
+                </a>
+            </div>
+            <br></hr>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for dish in page_data.dishes %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"/>
+                    </svg>
+        
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <large class="card-text">{{ dish.dish_name }}</large>
+                                <large class="card-text">{{ dish.dish_cost }}</large>
+                            </div>
+                            <div class="card-description">
+                                <small class="text-muted">{{ dish.dish_description }}</small>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="btn-check-outlined">Small</label><br>
+                                
+                                
+                                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="btn-check-outlined">Large</label><br>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <button type="button" class="btn btn-success">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>    
 {% endblock %}
