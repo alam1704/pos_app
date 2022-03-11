@@ -16,6 +16,16 @@ def unauthorized():
 #does the blueprint use the tablename from models?
 restaurant = Blueprint('restaurant', __name__)
 
+@restaurant.route("/", methods=['GET'])
+def home():
+    #if user is logged in - return dish_menu.html
+    #if user is logged out - return restaurant_login.html
+    if current_user.is_authenticated:
+        return redirect(url_for("restaurant.restaurant_detail"))
+    else:
+        return redirect(url_for("restaurant.log_in"))
+
+
 @restaurant.route("/restaurant/", methods=['GET'])
 def retrieve_restaurants():
     restaurant_list=Restaurant.query.all()
@@ -61,8 +71,13 @@ def log_in():
 @restaurant.route("/account/", methods=['GET','POST'])
 @login_required
 def restaurant_detail():
+    
     if request.method=="GET":
-        data = {"page_title":"Account details"}
+        res=Restaurant.query.get_or_404(current_user.restaurant_id)
+        data = {
+            "page_title":"Account details",
+            "restaurant": restaurant_schema.dump(res)
+        }
         return render_template("restaurant_detail.html", page_data=data)
     else:
         restaurant=Restaurant.query.filter_by(restaurant_id=current_user.restaurant_id)
