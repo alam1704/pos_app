@@ -13,9 +13,9 @@ class Dish(db.Model):
     dish_description = db.Column(db.String(200), nullable=True)
     # ord_order_id = db.relationship('Order', cascade='all,delete', backref='customer', lazy=True)
 
-    # @property
-    # def item_image(self):
-    #     return f"An image from {self.item_id}"
+    @property
+    def dish_image(self):
+        return f"dish_images/{self.dish_id}.jpg"
 
 class Order(db.Model):
     '''Order table'''
