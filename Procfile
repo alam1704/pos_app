@@ -1,1 +1,1 @@
-web: gunicorn main:flask_pos_app
+web: gunicorn pos_app/main:create_app
