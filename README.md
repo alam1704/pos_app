@@ -4,6 +4,14 @@
     <img src="docs/logo.png">
 </p>
 
+## Link to deployed webiste:
+
+https://ccc012110-t4a3.herokuapp.com/
+
+## Link to Git Repo
+
+https://github.com/alam1704/pw_app
+
 ## Purpose
 
 The purpose of the simple Python Flask app is to allow a restaurant owner to have free access to open-source web application that will help manage their sales and expenditure data for tax purposes. The web application will provide its users with a more streamlined approach in handling orders, adding items to cart, and finishing the sale as well as allowing restaurant owners to record all tax deductible expenses on the one application. Reports can be customised based on dates (daily, weekly, monthly, yearly etc.)
