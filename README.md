@@ -10,7 +10,7 @@ https://ccc012110-t4a3.herokuapp.com/
 
 ## Link to Git Repo
 
-https://github.com/alam1704/pw_app
+https://github.com/alam1704/pos_app
 
 ## Purpose
 
