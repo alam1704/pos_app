@@ -22,6 +22,13 @@ Any Restaurant Owners who need a modern Web App POS to keep track of their sales
 
 <br>
 
+## Libraries attempted in the app
+
+- Flask: Python Web framework using features of url routing and rendering templates. Implement EC2 for running flask.
+- Intended to use Amazon Cognito services for login authentication.
+- Amazon RDS for relational database for storing orders and transaction details
+- Amazon DynamoDB for storing menu data. 
+
 # Proposed Architecture Diagram
 
 ![AAD](/docs/T4A2_AAD2.drawio.png)
@@ -76,8 +83,18 @@ Will implement REST API Gateway
 
 ![Mobile](/docs/Mobile.png)
 
+# Project Management and Task Delegation
+
+To help maintian agile project management methodology, I ensured the project was completed in a timely manner by delegating tasks using a Trello Board. The web application has allowed tasks to be tracked and tasks were labelled based on difficulty and importance. However, as the sole developer, all tasks have been delegated to myself. This has made things a little hard as even though I have sound python skills and front end design, I am weak using serverless technologies.  
+
 # Trello Board Plan 
 
 ![Trello Board 1](/docs/Trello1.png)
 
 ![Trello Board 2](/docs/Trello2.png)
+
+## Development Testing
+
+[Testing Spreadsheet](/docs/test.xlsx)
+
+![screenshot of testing](/docs/testing.png)
