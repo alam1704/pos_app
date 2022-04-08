@@ -6,7 +6,7 @@
 
 ## Link to deployed webiste:
 
-https://ccc012110-t4a3.herokuapp.com/
+www.exampleposapp.link
 
 ## Link to Git Repo
 
